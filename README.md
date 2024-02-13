@@ -12,10 +12,10 @@
     <li><b>Average Odds Difference:</b> The average difference of false positive rate (false positives / negatives) and true positive rate (true positives / positives) between unprivileged and privileged groups</li>
   </ul>
   <li>Individual biases</li>
-  <li><ul>
+  <ul>
     <li><b>Theil Index:</b> The generalized entropy of benefit for all individuals in the dataset, with alpha = 1.</li>
     <li><b>Consistency:</b>The similarity of predictions among a row's k-nearest neighbors.</li>
-  </ul></li>
+  </ul>
 </ul>
 
 <h3>Base dataset</h3>
