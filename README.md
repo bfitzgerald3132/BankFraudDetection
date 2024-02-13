@@ -14,7 +14,7 @@
   <li>Individual biases</li>
   <ul>
     <li><b>Theil Index:</b> The generalized entropy of benefit for all individuals in the dataset, with alpha = 1.</li>
-    <li><b>Consistency:</b>The similarity of predictions among a row's k-nearest neighbors.</li>
+    <li><b>Consistency: </b>The similarity of predictions among a row's k-nearest neighbors.</li>
   </ul>
 </ul>
 
