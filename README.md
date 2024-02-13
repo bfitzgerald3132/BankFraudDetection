@@ -5,12 +5,12 @@
 <p>I screen for bias using six metrics:</p>
 <ul>
   <li>Group biases</li>
-  <li><ul>
+  <ul>
     <li><b>Disparate Impact:</b> The ratio of rate of favorable outcomes for the unprivileged group to that of the privileged group.</li>
     <li><b>Statistical parity difference:</b> Difference of favorable outcomes received by the privileged group to the unprivileged group</li>
     <li><b>Equal Opportunity Difference:</b> The difference of true positive rates between the unprivileged and the privileged groups</li>
     <li><b>Average Odds Difference:</b> The average difference of false positive rate (false positives / negatives) and true positive rate (true positives / positives) between unprivileged and privileged groups</li>
-  </ul></li>
+  </ul>
   <li>Individual biases</li>
   <li><ul>
     <li><b>Theil Index:</b> The generalized entropy of benefit for all individuals in the dataset, with alpha = 1.</li>
