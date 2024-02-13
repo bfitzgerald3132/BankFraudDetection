@@ -24,8 +24,8 @@
 <p>The researchers developed six variations of this dataset to help data scientists identify biases that could arise in a production environment. These variants take "customer_age" as a protected attribute _A_ (i.e. an attribute tied to discriminatory fraud detection) and differentiate customers under 50 (the privileged group) from customers over fifty (the unprivileged group). The variants are designed to reflect the following data biases:</p>
 <ul>
   <li>Group size disparity. Only 10% of customers are over fifty, leading to less accurate predictions for this age group.</li>
-  <li>Prevalence disparity (Variant II). Age (or directly correlating factors) were used to calculate labels. Training on these labels will therefore amplify statistical bias through a positive feedback loop. </li>
-  <li>Separability disparity (Variant II). Each age group has a tendency to self-segregate in ways that can either heighten or lower risk of fraud. Feedzai's paper gives the example of younger people being more willing to use ATMs at night in poorly-lit areas, heightening their use of fraud.</li>
+  <li>Prevalence disparity. Age (or directly correlating factors) were used to calculate labels. Training on these labels will therefore amplify statistical bias through a positive feedback loop. </li>
+  <li>Separability disparity. Each age group has a tendency to self-segregate in ways that can either heighten or lower risk of fraud. Feedzai's paper gives the example of younger people being more willing to use ATMs at night in poorly-lit areas, heightening their use of fraud.</li>
 </ul>
 
 <p>My random forest model of the dataset achieved ~98.5% accuracy with the specified hyperparameters, which the dataset's creators listed as a target value. My false positive rate, or FPR (which the dataset creators considered a better metric) was ~1.14%.</p>
@@ -34,3 +34,16 @@
 <p>Group bias is immediately apparent from my model's disparate impact and statistical parity difference. These consider the ratio and difference, respectively, of each group's number of positive predictions. With disparate_impact_ratio = 0.14 and statistical_parity_difference = 49/57, it is clear that we need a metric independent of total population size. However, this does raise immediate questions about whether the lack of training data for our unprivileged group affects its accuracy. Clearly, steps should be taken to equalize each group's number of inputs for similar cases in production environments--whether by removing training data on our privileged group or making a more active commitment to collecting data on our underprivileged group.</p>
 
 <p><img src="https://github.com/bfitzgerald3132/BankFraudDetection/blob/main/Screenshot%202024-02-13%20105644.png?raw=true" /></p>
+
+<p>Equal opportunity difference (EOB) is our first size-independant metric, and its stark disparity shows us that factors other than group bias are warping our model's predictions. My model's predictions produce an EOB=1.11%, which, though it sounds insignificant, translates to an estimated 11,000 more false positive cases for older customers. Even more significant is the fact that EOB is only 0.03% lower than our general FPR. In other words, older customers have double the chance of being falsely flagged as a false positive than other customers.</p>
+
+<p><img src="https://github.com/bfitzgerald3132/BankFraudDetection/blob/main/Screenshot%202024-02-13%20124939.png?raw=true" /></p>
+
+<p>We see something similar with average odds difference (AOD), where my model's AOD = 0.0174, or 1.74%.
+
+<p><img src="https://github.com/bfitzgerald3132/BankFraudDetection/blob/main/Screenshot%202024-02-13%20130535.png?raw=true" /></p>
+
+<h3>Conclusions & Further Work</h3>
+<p>It's unlikely that banks will make categorical decisions based on data modeling alone, but this scenario is becoming more likely. Addressing data equity concerns as they arise doesn't just allow us to fix discrimination in the short term; it helps us pioneer methods to increase computational fairness in a way that helps us all.</p>
+
+<p>I hope to contribute to this effort, too. My future plans for this project are screening for individual and causal biases and experimenting with methods for reducing the impact of bias in data. I hope to do so by leveraging the aforecited papers and additional research.</p>
